@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Transport Profit Calculator | FreightLedger</title>
+  <link rel="icon" href="logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="calculator.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="nav-wrap">
+      <div class="brand"><img src="logo.svg" alt="" width="35" height="35"><span>Freight<strong>Ledger</strong></span></div>
+      <nav aria-label="Navigation">
+        <button id="calc-tab" class="tab selected" aria-current="page"><i data-icon="calculator"></i><span data-t="calculator"></span></button>
+        <button id="history-tab" class="tab"><i data-icon="history"></i><span data-t="history"></span><span id="history-count" class="count" hidden></span></button>
+      </nav>
+      <div class="preferences">
+        <label class="select-wrap"><i data-icon="globe"></i><select id="language" aria-label="Language / Język"><option>EN</option><option>PL</option></select><i data-icon="chevron"></i></label>
+        <span class="divider"></span><button id="theme" class="icon-button"></button>
+      </div>
+    </div>
+  </header>
+  <main class="wrap">
+    <section id="calculator-view">
+      <div class="page-head"><div><h1 data-t="title"></h1><p data-t="intro"></p></div><div class="actions">
+        <button class="button secondary" id="export"><i data-icon="download"></i><span data-t="export"></span></button>
+        <button class="button primary" id="save"><i data-icon="bookmark"></i><span data-t="save"></span></button>
+      </div></div>
+      <section class="metrics" id="metrics" aria-label="Results"></section>
+      <div class="workspace">
+        <section class="panel parameters">
+          <header class="trip-head">
+            <div><div class="trip-icon"><i data-icon="sliders"></i></div><h2 data-t="parameters"></h2><p data-t="parametersHint"></p></div>
+            <img src="truck.svg" alt="" class="truck">
+          </header>
+          <form id="form" novalidate autocomplete="off">
+            <div class="group"><div class="group-heading"><h3><i data-icon="route"></i><span data-t="distance"></span></h3><span class="meta" id="distance-total"></span></div><div class="field-grid" data-fields="paid,empty"></div></div>
+            <div class="group"><div class="group-heading"><h3><i data-icon="fuel"></i><span data-t="fuelGroup"></span></h3></div><div class="field-grid" data-fields="consumption,price"></div></div>
+            <div class="group"><div class="group-heading"><h3><i data-icon="wallet"></i><span data-t="financials"></span></h3><label class="currency-control"><span data-t="currency"></span><select id="currency"><option>PLN</option><option>EUR</option></select><i data-icon="chevron"></i></label></div><div class="field-grid" data-fields="revenue,driver,tolls,extra"></div></div>
+          </form>
+        </section>
+        <aside class="panel breakdown">
+          <div class="break-head"><span class="tile"><i data-icon="pie"></i></span><h2 data-t="breakdown"></h2></div>
+          <div class="chart-wrap"><div class="chart"><svg viewBox="0 0 220 220" aria-hidden="true" id="donut"></svg><div class="chart-label"><span data-t="totalCosts"></span><strong id="chart-value"></strong><small class="unit"></small></div></div></div>
+          <div class="legend" id="legend"></div>
+          <div class="break-total"><span data-t="totalCosts"></span><strong id="legend-total"></strong></div>
+          <p class="note"><i data-icon="info"></i><span data-t="taxNote"></span></p>
+        </aside>
+      </div>
+    </section>
+    <section id="history-view" hidden>
+      <div class="page-head"><div><h1 data-t="historyTitle"></h1><p data-t="historyIntro"></p></div><button class="button secondary" id="back"><i data-icon="calculator"></i><span data-t="calculator"></span></button></div>
+      <div class="panel history-list" id="history-list"></div>
+    </section>
+  </main>
+  <div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
